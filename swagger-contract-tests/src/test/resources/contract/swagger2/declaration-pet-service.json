@@ -5,8 +5,7 @@
     "version": "1.0",
     "title": "Api Documentation",
     "termsOfService": "urn:tos",
-    "contact": {
-    },
+    "contact": {},
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
@@ -98,6 +97,97 @@
         }
       }
     },
+    "/pets/findByAge{?age}": {
+      "get": {
+        "tags": [
+          "pet-service"
+        ],
+        "summary": "Find Pet by age",
+        "description": "Exclusive range with infinity",
+        "operationId": "findPetsByAgeUsingGET_1",
+        "parameters": [
+          {
+            "name": "age",
+            "in": "query",
+            "description": "Age values that need to be considered for filter",
+            "required": true,
+            "type": "string",
+            "exclusiveMaximum": true,
+            "minimum": 0,
+            "exclusiveMinimum": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        }
+      }
+    },
+    "/pets/findByLegs{?legs}": {
+      "get": {
+        "tags": [
+          "pet-service"
+        ],
+        "summary": "Find Pet by legs",
+        "description": "Exclusive range should work",
+        "operationId": "findPetsByLegsUsingGET_1",
+        "parameters": [
+          {
+            "name": "legs",
+            "in": "query",
+            "description": "Legs values that need to be considered for filter",
+            "required": true,
+            "type": "string",
+            "maximum": 10,
+            "exclusiveMaximum": true,
+            "minimum": 0,
+            "exclusiveMinimum": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        }
+      }
+    },
+    "/pets/findByStamina{?stamina}": {
+      "get": {
+        "tags": [
+          "pet-service"
+        ],
+        "summary": "Find Pet by stamina",
+        "description": "Exclusive range with -infinity",
+        "operationId": "findPetsByStaminaUsingGET_1",
+        "parameters": [
+          {
+            "name": "stamina",
+            "in": "query",
+            "description": "Stamina values",
+            "required": true,
+            "type": "string",
+            "maximum": 12,
+            "exclusiveMaximum": true,
+            "exclusiveMinimum": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        }
+      }
+    },
     "/pets/findByStatus{?status}": {
       "get": {
         "tags": [
@@ -106,9 +196,6 @@
         "summary": "Find Pet by status",
         "description": "Multiple status values can be provided with comma-separated strings",
         "operationId": "findPetsByStatusUsingGET_1",
-        "consumes": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "status",
@@ -145,9 +232,6 @@
         "summary": "Find Pet by tags",
         "description": "Multiple tags can be provided with comma-separated strings. Use tag1, tag2, tag3 for testing.",
         "operationId": "findPetsByTagsUsingGET_1",
-        "consumes": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "tags",
@@ -178,9 +262,6 @@
         ],
         "summary": "groomingFunctionThatReturnsVoid",
         "operationId": "groomingFunctionThatReturnsVoidUsingDELETE_4",
-        "consumes": [
-          "application/json"
-        ],
         "produces": [
           "application/xml",
           "application/json"
@@ -208,9 +289,6 @@
         ],
         "summary": "canGroom",
         "operationId": "canGroomUsingGET_3",
-        "consumes": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "type",
@@ -409,9 +487,6 @@
         ],
         "summary": "groomingFunctionThatReturnsVoid",
         "operationId": "groomingFunctionThatReturnsVoidUsingDELETE_5",
-        "consumes": [
-          "application/json"
-        ],
         "produces": [
           "application/xml",
           "application/json"
@@ -439,9 +514,6 @@
         ],
         "summary": "method",
         "operationId": "methodUsingGET_1",
-        "consumes": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "a",
@@ -502,9 +574,6 @@
         "summary": "Find pet by ID",
         "description": "Returns a pet when ID < 10. ID > 10 or non-integers will simulate API error conditions",
         "operationId": "getPetByIdUsingGET_4",
-        "consumes": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "petId",
@@ -513,7 +582,9 @@
             "required": true,
             "type": "string",
             "maximum": 5,
-            "minimum": 1
+            "exclusiveMaximum": false,
+            "minimum": 1,
+            "exclusiveMinimum": false
           }
         ],
         "responses": {
@@ -566,9 +637,6 @@
         ],
         "summary": "updatePic",
         "operationId": "updatePicUsingGET_1",
-        "consumes": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "petId",
@@ -623,7 +691,8 @@
         "name": {
           "type": "string"
         }
-      }
+      },
+      "title": "Pet"
     }
   }
 }

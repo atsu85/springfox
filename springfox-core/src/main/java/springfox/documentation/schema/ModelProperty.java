@@ -36,11 +36,14 @@ public class ModelProperty {
   private final Boolean required;
   private final boolean isHidden;
   private final Boolean readOnly;
+  private final Boolean allowEmptyValue;
   private final String description;
   private final AllowableValues allowableValues;
   private ModelReference modelRef;
   private final String example;
   private final String pattern;
+  private final String defaultValue;
+  private final Xml xml;
   private final List<VendorExtension> vendorExtensions;
 
   public ModelProperty(
@@ -51,10 +54,13 @@ public class ModelProperty {
       boolean required,
       boolean isHidden,
       boolean readOnly,
+      Boolean allowEmptyValue,
       String description,
       AllowableValues allowableValues,
       String example,
       String pattern,
+      String defaultValue,
+      Xml xml,
       List<VendorExtension> vendorExtensions) {
 
     this.name = name;
@@ -64,10 +70,13 @@ public class ModelProperty {
     this.required = required;
     this.isHidden = isHidden;
     this.readOnly = readOnly;
+    this.allowEmptyValue = allowEmptyValue;
     this.description = description;
     this.allowableValues = allowableValues;
     this.example = example;
     this.pattern = pattern;
+    this.defaultValue = defaultValue;
+    this.xml = xml;
     this.vendorExtensions = newArrayList(vendorExtensions);
   }
 
@@ -126,5 +135,22 @@ public class ModelProperty {
 
   public List<VendorExtension> getVendorExtensions() {
     return vendorExtensions;
+  }
+
+  public String getDefaultValue() {
+    return defaultValue;
+  }
+  
+  public Xml getXml() {
+    return xml;
+  }
+
+  /***
+   * Support for isAllowEmpty value
+   * @return true if supported
+   * @since 2.8.0
+   */
+  public Boolean isAllowEmptyValue() {
+    return allowEmptyValue;
   }
 }

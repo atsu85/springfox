@@ -1,6 +1,6 @@
 /*
  *
- *  Copyright 2015-2017 the original author or authors.
+ *  Copyright 2015-2019 the original author or authors.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -50,6 +51,7 @@ import springfox.documentation.spring.web.dummy.models.Treeish;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URI;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -205,6 +207,10 @@ public class DummyClass {
     return null;
   }
 
+  public ResponseEntity<EnumType> methodWithAlternateType(AlternateTypeContainer container) {
+    return null;
+  }
+
   @Deprecated
   public void methodWithDeprecated() {
     throw new UnsupportedOperationException();
@@ -223,6 +229,14 @@ public class DummyClass {
   }
 
   public void methodWithAnnotatedInteger(@Ignorable Integer integer) {
+    throw new UnsupportedOperationException();
+  }
+
+  public void methodWithURIAsRequestParam(@RequestParam URI uri) {
+    throw new UnsupportedOperationException();
+  }
+
+  public void methodWithURIAsPathVariable(@PathVariable URI uri) {
     throw new UnsupportedOperationException();
   }
 
